@@ -1,0 +1,20 @@
+# artefactos de compilación
+*.o
+*.ko
+*.mod
+*.mod.c
+.*.cmd
+Module.symvers
+modules.order
+.tmp_versions/
+user/client
+user/attacker
+user/mmgctl
+user/racer
+user/bench
+__pycache__/
+*.pyc
+user/stress
+user/ldp_victim
+user/ldp_victim_static
+user/ldp_guard.so
