@@ -1,0 +1,29 @@
+make -C kernel KDIR=/lib/modules/6.8.0-147-generic/build
+make[1]: Entering directory '/home/juandavidsierraorozco.guest/so-parcial3/kernel'
+make -C /lib/modules/6.8.0-147-generic/build M=/home/juandavidsierraorozco.guest/so-parcial3/kernel W=1 CC=/usr/bin/aarch64-linux-gnu-gcc-13 modules
+make[2]: Entering directory '/usr/src/linux-headers-6.8.0-147-generic'
+  CC [M]  /home/juandavidsierraorozco.guest/so-parcial3/kernel/mmguard_main.o
+  CC [M]  /home/juandavidsierraorozco.guest/so-parcial3/kernel/mmguard_vm.o
+  CC [M]  /home/juandavidsierraorozco.guest/so-parcial3/kernel/mmguard_vault.o
+  CC [M]  /home/juandavidsierraorozco.guest/so-parcial3/kernel/mmguard_audit.o
+  CC [M]  /home/juandavidsierraorozco.guest/so-parcial3/kernel/mmguard_kprobe.o
+  LD [M]  /home/juandavidsierraorozco.guest/so-parcial3/kernel/mmguard.o
+  MODPOST /home/juandavidsierraorozco.guest/so-parcial3/kernel/Module.symvers
+  CC [M]  /home/juandavidsierraorozco.guest/so-parcial3/kernel/mmguard.mod.o
+  LD [M]  /home/juandavidsierraorozco.guest/so-parcial3/kernel/mmguard.ko
+  BTF [M] /home/juandavidsierraorozco.guest/so-parcial3/kernel/mmguard.ko
+Skipping BTF generation for /home/juandavidsierraorozco.guest/so-parcial3/kernel/mmguard.ko due to unavailability of vmlinux
+make[2]: Leaving directory '/usr/src/linux-headers-6.8.0-147-generic'
+make[1]: Leaving directory '/home/juandavidsierraorozco.guest/so-parcial3/kernel'
+make -C user
+make[1]: Entering directory '/home/juandavidsierraorozco.guest/so-parcial3/user'
+cc -Wall -Wextra -O2 -g -pthread -I../include -o client client.c
+cc -Wall -Wextra -O2 -g -pthread -I../include -o attacker attacker.c
+cc -Wall -Wextra -O2 -g -pthread -I../include -o mmgctl mmgctl.c
+cc -Wall -Wextra -O2 -g -pthread -I../include -o racer racer.c
+cc -Wall -Wextra -O2 -g -pthread -I../include -o bench bench.c
+cc -Wall -Wextra -O2 -g -pthread -I../include -o stress stress.c
+cc -Wall -Wextra -O2 -g -pthread -I../include -o ldp_victim ldp_victim.c
+cc -Wall -Wextra -O2 -g -pthread -I../include -static -o ldp_victim_static ldp_victim.c
+cc -Wall -Wextra -O2 -g -pthread -I../include -shared -fPIC -o ldp_guard.so ldp_guard.c -ldl
+make[1]: Leaving directory '/home/juandavidsierraorozco.guest/so-parcial3/user'

@@ -1,0 +1,148 @@
+# mmguard: auditoría de mapeos protegidos
+parametros: verify_on_fault=1 use_vm_io=1 allow_debug=1 watch_path="/tmp/mmguard_vigilado"
+boveda: 16 paginas de 4096 bytes, AES-256-CTR + HMAC-SHA256
+
+[contadores]
+mmap_ok                      19
+mmap_denegados               6
+fallos_de_pagina             4460421
+fallos_con_descifrado        16
+fallos_con_refresco          845713
+page_mkwrite                 424309
+sellados                     424309
+paginas_selladas             424309
+violaciones_integridad       3
+paginas_reparadas            1
+accesos_remotos_denegados    1
+escrituras_denegadas         2
+mmap_vistos_por_kprobe       1
+
+[ultimos eventos]
+#5309032 t=1800538ms FALLO pid=15613 tgid=15613 uid=1000 comm=stress pagina=7 va=0xf5642721f000 lectura
+#5309033 t=1800538ms FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+#5309034 t=1800538ms FALLO pid=15612 tgid=15612 uid=1001 comm=stress pagina=7 va=0xf55080e3c000 escritura
+#5309035 t=1800538ms ESCRIBE pid=15612 tgid=15612 uid=1001 comm=stress pagina=7 marcada sucia (pendiente de sellar)
+#5309036 t=1800538ms FALLO pid=15613 tgid=15613 uid=1000 comm=stress pagina=7 va=0xf5642721f000 lectura
+#5309037 t=1800538ms FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+#5309038 t=1800538ms FALLO pid=15613 tgid=15613 uid=1000 comm=stress pagina=7 va=0xf5642721f000 lectura
+#5309039 t=1800538ms SELLA pid=15612 tgid=15612 uid=1001 comm=stress sellado: 1 pagina(s) re-cifradas (ret=0)
+#5309040 t=1800538ms FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+#5309041 t=1800538ms FALLO pid=15613 tgid=15613 uid=1000 comm=stress pagina=7 va=0xf5642721f000 lectura
+#5309042 t=1800538ms FALLO pid=15612 tgid=15612 uid=1001 comm=stress pagina=7 va=0xf55080e3c000 escritura
+#5309043 t=1800538ms ESCRIBE pid=15612 tgid=15612 uid=1001 comm=stress pagina=7 marcada sucia (pendiente de sellar)
+#5309044 t=1800538ms FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+#5309045 t=1800538ms FALLO pid=15613 tgid=15613 uid=1000 comm=stress pagina=7 va=0xf5642721f000 lectura
+#5309046 t=1800538ms FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+#5309047 t=1800538ms SELLA pid=15612 tgid=15612 uid=1001 comm=stress sellado: 1 pagina(s) re-cifradas (ret=0)
+#5309048 t=1800538ms FALLO pid=15613 tgid=15613 uid=1000 comm=stress pagina=7 va=0xf5642721f000 lectura
+#5309049 t=1800538ms FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+#5309050 t=1800538ms FALLO pid=15612 tgid=15612 uid=1001 comm=stress pagina=7 va=0xf55080e3c000 escritura
+#5309051 t=1800538ms ESCRIBE pid=15612 tgid=15612 uid=1001 comm=stress pagina=7 marcada sucia (pendiente de sellar)
+#5309052 t=1800538ms FALLO pid=15613 tgid=15613 uid=1000 comm=stress pagina=7 va=0xf5642721f000 lectura
+#5309053 t=1800538ms FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+#5309054 t=1800538ms FALLO pid=15613 tgid=15613 uid=1000 comm=stress pagina=7 va=0xf5642721f000 lectura
+#5309055 t=1800538ms SELLA pid=15612 tgid=15612 uid=1001 comm=stress sellado: 1 pagina(s) re-cifradas (ret=0)
+#5309056 t=1800538ms FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+#5309057 t=1800538ms FALLO pid=15613 tgid=15613 uid=1000 comm=stress pagina=7 va=0xf5642721f000 lectura
+#5309058 t=1800538ms FALLO pid=15612 tgid=15612 uid=1001 comm=stress pagina=7 va=0xf55080e3c000 escritura
+#5309059 t=1800538ms ESCRIBE pid=15612 tgid=15612 uid=1001 comm=stress pagina=7 marcada sucia (pendiente de sellar)
+#5309060 t=1800538ms FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+#5309061 t=1800538ms FALLO pid=15613 tgid=15613 uid=1000 comm=stress pagina=7 va=0xf5642721f000 lectura
+#5309062 t=1800538ms SELLA pid=15612 tgid=15612 uid=1001 comm=stress sellado: 1 pagina(s) re-cifradas (ret=0)
+#5309063 t=1800538ms FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+#5309064 t=1800538ms FALLO pid=15612 tgid=15612 uid=1001 comm=stress pagina=7 va=0xf55080e3c000 escritura
+#5309065 t=1800538ms FALLO pid=15613 tgid=15613 uid=1000 comm=stress pagina=7 va=0xf5642721f000 lectura
+#5309066 t=1800538ms ESCRIBE pid=15612 tgid=15612 uid=1001 comm=stress pagina=7 marcada sucia (pendiente de sellar)
+#5309067 t=1800538ms FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+#5309068 t=1800538ms FALLO pid=15613 tgid=15613 uid=1000 comm=stress pagina=7 va=0xf5642721f000 lectura
+#5309069 t=1800538ms FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+#5309070 t=1800538ms SELLA pid=15612 tgid=15612 uid=1001 comm=stress sellado: 1 pagina(s) re-cifradas (ret=0)
+#5309071 t=1800538ms FALLO pid=15613 tgid=15613 uid=1000 comm=stress pagina=7 va=0xf5642721f000 lectura
+#5309072 t=1800538ms FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+#5309073 t=1800538ms FALLO pid=15612 tgid=15612 uid=1001 comm=stress pagina=7 va=0xf55080e3c000 escritura
+#5309074 t=1800538ms ESCRIBE pid=15612 tgid=15612 uid=1001 comm=stress pagina=7 marcada sucia (pendiente de sellar)
+#5309075 t=1800538ms FALLO pid=15613 tgid=15613 uid=1000 comm=stress pagina=7 va=0xf5642721f000 lectura
+#5309076 t=1800538ms FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+#5309077 t=1800538ms FALLO pid=15613 tgid=15613 uid=1000 comm=stress pagina=7 va=0xf5642721f000 lectura
+#5309078 t=1800538ms SELLA pid=15612 tgid=15612 uid=1001 comm=stress sellado: 1 pagina(s) re-cifradas (ret=0)
+#5309079 t=1800538ms FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+#5309080 t=1800538ms FALLO pid=15613 tgid=15613 uid=1000 comm=stress pagina=7 va=0xf5642721f000 lectura
+#5309081 t=1800538ms FALLO pid=15612 tgid=15612 uid=1001 comm=stress pagina=7 va=0xf55080e3c000 escritura
+#5309082 t=1800538ms ESCRIBE pid=15612 tgid=15612 uid=1001 comm=stress pagina=7 marcada sucia (pendiente de sellar)
+#5309083 t=1800538ms FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+#5309084 t=1800538ms FALLO pid=15613 tgid=15613 uid=1000 comm=stress pagina=7 va=0xf5642721f000 lectura
+#5309085 t=1800538ms FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+#5309086 t=1800538ms SELLA pid=15612 tgid=15612 uid=1001 comm=stress sellado: 1 pagina(s) re-cifradas (ret=0)
+#5309087 t=1800538ms FALLO pid=15613 tgid=15613 uid=1000 comm=stress pagina=7 va=0xf5642721f000 lectura
+#5309088 t=1800538ms FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+#5309089 t=1800538ms FALLO pid=15612 tgid=15612 uid=1001 comm=stress pagina=7 va=0xf55080e3c000 escritura
+#5309090 t=1800538ms ESCRIBE pid=15612 tgid=15612 uid=1001 comm=stress pagina=7 marcada sucia (pendiente de sellar)
+#5309091 t=1800538ms FALLO pid=15613 tgid=15613 uid=1000 comm=stress pagina=7 va=0xf5642721f000 lectura
+#5309092 t=1800538ms FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+#5309093 t=1800539ms SELLA pid=15612 tgid=15612 uid=1001 comm=stress sellado: 1 pagina(s) re-cifradas (ret=0)
+#5309094 t=1800539ms FALLO pid=15613 tgid=15613 uid=1000 comm=stress pagina=7 va=0xf5642721f000 lectura
+#5309095 t=1800539ms FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+#5309096 t=1800539ms CIERRA pid=15613 tgid=15613 uid=1000 comm=stress close() de /dev/mmguard
+#5309097 t=1800539ms CIERRA pid=15611 tgid=15611 uid=1000 comm=stress close() de /dev/mmguard
+#5309098 t=1800539ms CIERRA pid=15612 tgid=15612 uid=1001 comm=stress close() de /dev/mmguard
+#5309099 t=1800544ms OPEN pid=15629 tgid=15629 uid=0 comm=stress open() de /dev/mmguard perms_acl=1
+#5309100 t=1800544ms MMAP pid=15629 tgid=15629 uid=0 comm=stress mmap autorizado perms=r- PRIVATE len=4096 off=28672 flags_vma=0x4064091
+#5309101 t=1800544ms FALLO pid=15629 tgid=15629 uid=0 comm=stress pagina=7 va=0xffd279b21000 lectura
+#5309102 t=1800544ms CIERRA pid=15629 tgid=15629 uid=0 comm=stress close() de /dev/mmguard
+#5309103 t=1800546ms OPEN pid=15639 tgid=15639 uid=0 comm=mmgctl open() de /dev/mmguard perms_acl=1
+#5309104 t=1800546ms CIERRA pid=15639 tgid=15639 uid=0 comm=mmgctl close() de /dev/mmguard
+#5309105 t=1800546ms OPEN pid=15641 tgid=15641 uid=0 comm=mmgctl open() de /dev/mmguard perms_acl=1
+#5309106 t=1800546ms CIERRA pid=15641 tgid=15641 uid=0 comm=mmgctl close() de /dev/mmguard
+#5309107 t=1800547ms OPEN pid=15643 tgid=15643 uid=0 comm=attacker open() de /dev/mmguard perms_acl=1
+#5309108 t=1800547ms MMAP pid=15643 tgid=15643 uid=0 comm=attacker mmap autorizado perms=r- SHARED len=4096 off=0 flags_vma=0x4064099
+#5309109 t=1800547ms OPEN pid=15643 tgid=15643 uid=0 comm=attacker open() de /dev/mmguard perms_acl=1
+#5309110 t=1800547ms CIERRA pid=15643 tgid=15643 uid=0 comm=attacker close() de /dev/mmguard
+#5309111 t=1800547ms FALLO pid=15643 tgid=15643 uid=0 comm=attacker pagina=0 va=0xe64e91353000 lectura
+#5309112 t=1800547ms ADMIN pid=15643 tgid=15643 uid=0 comm=attacker MODO DEPURACION: corrompe 1 byte de la pagina en claro 0 de la sesion
+#5309113 t=1800547ms INTEGRIDAD pid=15643 tgid=15643 uid=0 comm=attacker pagina=0 MODIFICADA sin autorizacion en memoria (SHA-256 no coincide)
+#5309114 t=1800547ms INTEGRIDAD pid=15643 tgid=15643 uid=0 comm=attacker pagina=0 reparada desde la boveda cifrada
+#5309115 t=1800547ms FALLO pid=15643 tgid=15643 uid=0 comm=attacker pagina=0 va=0xe64e91353000 lectura
+#5309116 t=1800547ms OPEN pid=15643 tgid=15643 uid=0 comm=attacker open() de /dev/mmguard perms_acl=1
+#5309117 t=1800547ms CIERRA pid=15643 tgid=15643 uid=0 comm=attacker close() de /dev/mmguard
+#5309118 t=1800547ms CIERRA pid=15643 tgid=15643 uid=0 comm=attacker close() de /dev/mmguard
+#5309119 t=1800549ms OPEN pid=15653 tgid=15653 uid=0 comm=attacker open() de /dev/mmguard perms_acl=1
+#5309120 t=1800549ms OPEN pid=15653 tgid=15653 uid=0 comm=attacker open() de /dev/mmguard perms_acl=1
+#5309121 t=1800549ms CIERRA pid=15653 tgid=15653 uid=0 comm=attacker close() de /dev/mmguard
+#5309122 t=1800549ms ADMIN pid=15653 tgid=15653 uid=0 comm=attacker MODO DEPURACION: voltea 1 bit del cifrado de la pagina 3
+#5309123 t=1800549ms INTEGRIDAD pid=15653 tgid=15653 uid=0 comm=attacker VERIFY pagina=3 MAC invalido (cifrado alterado)
+#5309124 t=1800549ms OPEN pid=15654 tgid=15654 uid=0 comm=attacker open() de /dev/mmguard perms_acl=1
+#5309125 t=1800549ms MMAP pid=15654 tgid=15654 uid=0 comm=attacker mmap autorizado perms=r- PRIVATE len=4096 off=12288 flags_vma=0x4064091
+#5309126 t=1800549ms INTEGRIDAD pid=15654 tgid=15654 uid=0 comm=attacker pagina=3 no se pudo descifrar/autenticar (err=-74) -> SIGBUS
+#5309127 t=1800549ms CIERRA pid=15654 tgid=15654 uid=0 comm=attacker close() de /dev/mmguard
+#5309128 t=1800549ms OPEN pid=15653 tgid=15653 uid=0 comm=attacker open() de /dev/mmguard perms_acl=1
+#5309129 t=1800549ms CIERRA pid=15653 tgid=15653 uid=0 comm=attacker close() de /dev/mmguard
+#5309130 t=1800549ms ADMIN pid=15653 tgid=15653 uid=0 comm=attacker LOAD offset=12288 len=4096 ret=0
+#5309131 t=1800549ms CIERRA pid=15653 tgid=15653 uid=0 comm=attacker close() de /dev/mmguard
+#5309132 t=1800551ms OPEN pid=15663 tgid=15663 uid=0 comm=mmgctl open() de /dev/mmguard perms_acl=1
+#5309133 t=1800551ms CIERRA pid=15663 tgid=15663 uid=0 comm=mmgctl close() de /dev/mmguard
+#5309134 t=1800561ms OPEN pid=15667 tgid=15667 uid=0 comm=mmgctl open() de /dev/mmguard perms_acl=1
+#5309135 t=1800561ms CIERRA pid=15667 tgid=15667 uid=0 comm=mmgctl close() de /dev/mmguard
+#5309136 t=1800562ms OPEN pid=15668 tgid=15668 uid=0 comm=client open() de /dev/mmguard perms_acl=1
+#5309137 t=1800562ms MMAP pid=15668 tgid=15668 uid=0 comm=client mmap autorizado perms=r- PRIVATE len=4096 off=0 flags_vma=0x4064091
+#5309138 t=1800562ms FALLO pid=15668 tgid=15668 uid=0 comm=client pagina=0 va=0xed3379931000 lectura
+#5309139 t=1800562ms CIERRA pid=15668 tgid=15668 uid=0 comm=client close() de /dev/mmguard
+#5309140 t=1800580ms OPEN pid=15680 tgid=15680 uid=1000 comm=client open() de /dev/mmguard perms_acl=1
+#5309141 t=1800580ms MMAP pid=15680 tgid=15680 uid=1000 comm=client mmap autorizado perms=r- PRIVATE len=4096 off=0 flags_vma=0x4064091
+#5309142 t=1800580ms FALLO pid=15680 tgid=15680 uid=1000 comm=client pagina=0 va=0xfcb44f0dc000 lectura
+#5309143 t=1804582ms CIERRA pid=15680 tgid=15680 uid=1000 comm=client close() de /dev/mmguard
+#5309144 t=1804622ms OPEN pid=15692 tgid=15692 uid=1000 comm=attacker open() de /dev/mmguard perms_acl=1
+#5309145 t=1804622ms MMAP pid=15692 tgid=15692 uid=1000 comm=attacker mmap autorizado perms=r- PRIVATE len=4096 off=0 flags_vma=0x4064091
+#5309146 t=1804622ms FALLO pid=15692 tgid=15692 uid=1000 comm=attacker pagina=0 va=0xe4a9ca625000 lectura
+#5309147 t=1805615ms OPEN pid=15693 tgid=15693 uid=0 comm=mmgctl open() de /dev/mmguard perms_acl=1
+#5309148 t=1805615ms ADMIN pid=15693 tgid=15693 uid=0 comm=mmgctl ACL: uid=1000 revocado ret=0
+#5309149 t=1805615ms CIERRA pid=15693 tgid=15693 uid=0 comm=mmgctl close() de /dev/mmguard
+#5309150 t=1806627ms DENIEGA pid=15692 tgid=15692 uid=1000 comm=attacker fallo de pagina=0: UID revocado en la ACL -> SIGBUS
+#5309151 t=1806627ms CIERRA pid=15692 tgid=15692 uid=1000 comm=attacker close() de /dev/mmguard
+#5309152 t=1806632ms OPEN pid=15707 tgid=15707 uid=0 comm=mmgctl open() de /dev/mmguard perms_acl=1
+#5309153 t=1806632ms ADMIN pid=15707 tgid=15707 uid=0 comm=mmgctl ACL: uid=1000 perms=1 ret=0
+#5309154 t=1806632ms CIERRA pid=15707 tgid=15707 uid=0 comm=mmgctl close() de /dev/mmguard
+#5309155 t=1806633ms OPEN pid=15710 tgid=15710 uid=0 comm=mmgctl open() de /dev/mmguard perms_acl=1
+#5309156 t=1806633ms CIERRA pid=15710 tgid=15710 uid=0 comm=mmgctl close() de /dev/mmguard
+#5309157 t=1806650ms KPROBE pid=15713 tgid=15713 uid=1000 comm=python3 mmap de archivo vigilado /tmp/mmguard_vigilado_datos.txt prot=r--
+#5309158 t=1806653ms OPEN pid=15715 tgid=15715 uid=0 comm=mmgctl open() de /dev/mmguard perms_acl=1
+#5309159 t=1806653ms CIERRA pid=15715 tgid=15715 uid=0 comm=mmgctl close() de /dev/mmguard

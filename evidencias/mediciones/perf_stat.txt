@@ -1,0 +1,130 @@
+### perf stat bench warm file /tmp/mm_bench.9CegoF
+RESULT modo=warm-archivo iteraciones=50000 ns_por_iter=3051 fallos_por_iter=1.00
+
+ Performance counter stats for '/home/juandavidsierraorozco.guest/so-parcial3/user/bench warm file /tmp/mm_bench.9CegoF 50000':
+
+             50052      page-faults                      #  309.710 K/sec                     
+             50052      minor-faults                     #  309.710 K/sec                     
+            161.61 msec task-clock                       #    0.978 CPUs utilized             
+                 1      context-switches                 #    6.188 /sec                      
+                 0      cpu-migrations                   #    0.000 /sec                      
+
+       0.165220455 seconds time elapsed
+
+       0.029173000 seconds user
+       0.132903000 seconds sys
+
+
+
+### perf stat bench warm dev
+RESULT modo=warm-mmguard iteraciones=50000 ns_por_iter=45855 fallos_por_iter=16.00
+
+ Performance counter stats for '/home/juandavidsierraorozco.guest/so-parcial3/user/bench warm dev 50000':
+
+            800066      page-faults                      #  353.747 K/sec                     
+            800066      minor-faults                     #  353.747 K/sec                     
+           2261.69 msec task-clock                       #    0.986 CPUs utilized             
+                 9      context-switches                 #    3.979 /sec                      
+                 0      cpu-migrations                   #    0.000 /sec                      
+
+       2.293557756 seconds time elapsed
+
+       0.035497000 seconds user
+       2.226475000 seconds sys
+
+
+
+### perf stat bench mmap (solo la llamada mmap+munmap)
+--- file /tmp/mm_bench.9CegoF
+RESULT modo=mmap-archivo iteraciones=50000 ns_por_iter=1235 fallos_por_iter=0.00
+
+ Performance counter stats for '/home/juandavidsierraorozco.guest/so-parcial3/user/bench mmap file /tmp/mm_bench.9CegoF 50000':
+
+             60.62 msec task-clock                       #    0.976 CPUs utilized             
+                51      page-faults                      #  841.274 /sec                      
+
+       0.062132479 seconds time elapsed
+
+       0.000980000 seconds user
+       0.059828000 seconds sys
+
+
+--- dev
+RESULT modo=mmap-mmguard iteraciones=50000 ns_por_iter=2297 fallos_por_iter=0.00
+
+ Performance counter stats for '/home/juandavidsierraorozco.guest/so-parcial3/user/bench mmap dev 50000':
+
+            109.32 msec task-clock                       #    0.946 CPUs utilized             
+                51      page-faults                      #  466.516 /sec                      
+
+       0.115543371 seconds time elapsed
+
+       0.006666000 seconds user
+       0.103118000 seconds sys
+
+
+### perf stat bench warm file /tmp/mm_bench.8Z4FFM
+RESULT modo=warm-archivo iteraciones=50000 ns_por_iter=1755 fallos_por_iter=1.00
+
+ Performance counter stats for '/home/juandavidsierraorozco.guest/so-parcial3/user/bench warm file /tmp/mm_bench.8Z4FFM 50000':
+
+             50052      page-faults                      #  582.085 K/sec                     
+             50052      minor-faults                     #  582.085 K/sec                     
+             85.99 msec task-clock                       #    0.976 CPUs utilized             
+                 0      context-switches                 #    0.000 /sec                      
+                 0      cpu-migrations                   #    0.000 /sec                      
+
+       0.088079899 seconds time elapsed
+
+       0.013708000 seconds user
+       0.072457000 seconds sys
+
+
+
+### perf stat bench warm dev
+RESULT modo=warm-mmguard iteraciones=50000 ns_por_iter=32880 fallos_por_iter=16.00
+
+ Performance counter stats for '/home/juandavidsierraorozco.guest/so-parcial3/user/bench warm dev 50000':
+
+            800067      page-faults                      #  496.652 K/sec                     
+            800067      minor-faults                     #  496.652 K/sec                     
+           1610.92 msec task-clock                       #    0.980 CPUs utilized             
+                 3      context-switches                 #    1.862 /sec                      
+                 0      cpu-migrations                   #    0.000 /sec                      
+
+       1.644453833 seconds time elapsed
+
+       0.021559000 seconds user
+       1.589515000 seconds sys
+
+
+
+### perf stat bench mmap (solo la llamada mmap+munmap)
+--- file /tmp/mm_bench.8Z4FFM
+RESULT modo=mmap-archivo iteraciones=50000 ns_por_iter=934 fallos_por_iter=0.00
+
+ Performance counter stats for '/home/juandavidsierraorozco.guest/so-parcial3/user/bench mmap file /tmp/mm_bench.8Z4FFM 50000':
+
+             45.29 msec task-clock                       #    0.964 CPUs utilized             
+                50      page-faults                      #    1.104 K/sec                     
+
+       0.046967582 seconds time elapsed
+
+       0.004832000 seconds user
+       0.040591000 seconds sys
+
+
+--- dev
+RESULT modo=mmap-mmguard iteraciones=50000 ns_por_iter=1480 fallos_por_iter=0.00
+
+ Performance counter stats for '/home/juandavidsierraorozco.guest/so-parcial3/user/bench mmap dev 50000':
+
+             72.76 msec task-clock                       #    0.979 CPUs utilized             
+                51      page-faults                      #  700.969 /sec                      
+
+       0.074291126 seconds time elapsed
+
+       0.001970000 seconds user
+       0.070927000 seconds sys
+
+

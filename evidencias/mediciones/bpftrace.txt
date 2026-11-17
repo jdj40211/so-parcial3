@@ -1,0 +1,88 @@
+### handle_mm_fault total, archivo normal (warm, 20000 it.)
+RESULT modo=warm-archivo iteraciones=20000 ns_por_iter=2115 fallos_por_iter=1.00
+
+
+@avg: 725
+
+@n: 20054
+@ns: 
+[128, 256)             3 |                                                    |
+[256, 512)            11 |                                                    |
+[512, 1K)          20007 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[1K, 2K)              18 |                                                    |
+[2K, 4K)               4 |                                                    |
+[4K, 8K)              11 |                                                    |
+
+
+
+### handle_mm_fault total, mmguard (warm, 20000 it.)
+RESULT modo=warm-mmguard iteraciones=20000 ns_por_iter=42420 fallos_por_iter=16.00
+
+
+@avg: 1063
+
+@n: 640085
+@ns: 
+[64, 128)          31327 |@@@@@                                               |
+[128, 256)        288360 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   |
+[256, 512)           136 |                                                    |
+[512, 1K)            105 |                                                    |
+[1K, 2K)          304448 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[2K, 4K)           14804 |@@                                                  |
+[4K, 8K)             842 |                                                    |
+[8K, 16K)             57 |                                                    |
+[16K, 32K)             5 |                                                    |
+[32K, 64K)             1 |                                                    |
+
+
+
+### solo el callback mmg_vm_fault (warm, con SHA-256), 20000 it.
+RESULT modo=warm-mmguard iteraciones=20000 ns_por_iter=37537 fallos_por_iter=16.00
+
+
+@avg: 1848
+
+@n: 320016
+@ns: 
+[1K, 2K)          309065 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[2K, 4K)           10221 |@                                                   |
+[4K, 8K)             700 |                                                    |
+[8K, 16K)             28 |                                                    |
+[16K, 32K)             2 |                                                    |
+
+
+
+### solo el callback mmg_vm_fault (warm, SIN SHA-256), 20000 it.
+RESULT modo=warm-mmguard iteraciones=20000 ns_por_iter=13594 fallos_por_iter=16.00
+
+
+@avg: 400
+
+@n: 320016
+@ns: 
+[128, 256)             3 |                                                    |
+[256, 512)        319681 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[512, 1K)             99 |                                                    |
+[1K, 2K)              40 |                                                    |
+[2K, 4K)             124 |                                                    |
+[4K, 8K)              65 |                                                    |
+[8K, 16K)              4 |                                                    |
+
+
+
+### solo el callback mmg_vm_fault (cold: sesion nueva, descifra), 3000 it.
+RESULT modo=cold-mmguard iteraciones=3000 ns_por_iter=74295 fallos_por_iter=16.00
+
+
+@avg: 3829
+
+@n: 48000
+@ns: 
+[2K, 4K)           46233 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[4K, 8K)            1557 |@                                                   |
+[8K, 16K)            155 |                                                    |
+[16K, 32K)            54 |                                                    |
+[32K, 64K)             1 |                                                    |
+
+
+

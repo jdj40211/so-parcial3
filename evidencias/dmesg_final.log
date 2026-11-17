@@ -1,0 +1,265 @@
+[ 2063.405801] mmguard: boveda lista: 16 paginas cifradas con ctr-aes-ce
+[ 2063.406684] mmguard: cargado: /dev/mmguard, verify_on_fault=1 use_vm_io=1 allow_debug=1 watch_path="/tmp/mmguard_vigilado"
+[ 2063.407600] mmguard: OPEN pid=15446 tgid=15446 uid=0 comm=mmgctl open() de /dev/mmguard perms_acl=0
+[ 2063.407604] mmguard: ADMIN pid=15446 tgid=15446 uid=0 comm=mmgctl ACL: uid=1000 perms=1 ret=0
+[ 2063.407631] mmguard: CIERRA pid=15446 tgid=15446 uid=0 comm=mmgctl close() de /dev/mmguard
+[ 2063.408296] mmguard: OPEN pid=15449 tgid=15449 uid=0 comm=mmgctl open() de /dev/mmguard perms_acl=0
+[ 2063.408300] mmguard: ADMIN pid=15449 tgid=15449 uid=0 comm=mmgctl ACL: uid=1001 perms=3 ret=0
+[ 2063.408323] mmguard: CIERRA pid=15449 tgid=15449 uid=0 comm=mmgctl close() de /dev/mmguard
+[ 2063.409676] mmguard: OPEN pid=15451 tgid=15451 uid=0 comm=mmgctl open() de /dev/mmguard perms_acl=0
+[ 2063.409680] mmguard: ADMIN pid=15451 tgid=15451 uid=0 comm=mmgctl ACL: uid=0 perms=1 ret=0
+[ 2063.409714] mmguard: CIERRA pid=15451 tgid=15451 uid=0 comm=mmgctl close() de /dev/mmguard
+[ 2063.416141] mmguard: OPEN pid=15460 tgid=15460 uid=1000 comm=client open() de /dev/mmguard perms_acl=1
+[ 2063.416145] mmguard: MMAP pid=15460 tgid=15460 uid=1000 comm=client mmap autorizado perms=r- PRIVATE len=4096 off=0 flags_vma=0x4064091
+[ 2063.416157] mmguard: FALLO pid=15460 tgid=15460 uid=1000 comm=client pagina=0 va=0xe397488b5000 lectura
+[ 2063.416181] mmguard: CIERRA pid=15460 tgid=15460 uid=1000 comm=client close() de /dev/mmguard
+[ 2063.420856] mmguard: OPEN pid=15464 tgid=15464 uid=1000 comm=client open() de /dev/mmguard perms_acl=1
+[ 2063.420860] mmguard: MMAP pid=15464 tgid=15464 uid=1000 comm=client mmap autorizado perms=r- PRIVATE len=4096 off=20480 flags_vma=0x4064011
+[ 2063.420869] mmguard: FALLO pid=15464 tgid=15464 uid=1000 comm=client pagina=5 va=0xe6de6312e000 lectura
+[ 2063.420892] mmguard: CIERRA pid=15464 tgid=15464 uid=1000 comm=client close() de /dev/mmguard
+[ 2063.426867] mmguard: OPEN pid=15469 tgid=15469 uid=1002 comm=attacker open() de /dev/mmguard perms_acl=0
+[ 2063.426871] mmguard: DENIEGA pid=15469 tgid=15469 uid=1002 comm=attacker mmap rechazado (uid no autorizado) prot=r-- SHARED len=4096 off=0 err=13
+[ 2063.426873] mmguard: DENIEGA pid=15469 tgid=15469 uid=1002 comm=attacker mmap rechazado (uid no autorizado) prot=r-- PRIVATE len=4096 off=0 err=13
+[ 2063.426906] mmguard: CIERRA pid=15469 tgid=15469 uid=1002 comm=attacker close() de /dev/mmguard
+[ 2063.433517] mmguard: OPEN pid=15480 tgid=15480 uid=1002 comm=client open() de /dev/mmguard perms_acl=0
+[ 2063.433521] mmguard: DENIEGA pid=15480 tgid=15480 uid=1002 comm=client mmap rechazado (uid no autorizado) prot=r-- PRIVATE len=4096 off=0 err=13
+[ 2063.433544] mmguard: CIERRA pid=15480 tgid=15480 uid=1002 comm=client close() de /dev/mmguard
+[ 2063.437710] mmguard: OPEN pid=15483 tgid=15483 uid=1000 comm=attacker open() de /dev/mmguard perms_acl=1
+[ 2063.437713] mmguard: MMAP pid=15483 tgid=15483 uid=1000 comm=attacker mmap autorizado perms=r- SHARED len=4096 off=0 flags_vma=0x4064099
+[ 2063.437742] mmguard: CIERRA pid=15483 tgid=15483 uid=1000 comm=attacker close() de /dev/mmguard
+[ 2063.443943] mmguard: OPEN pid=15494 tgid=15494 uid=1000 comm=attacker open() de /dev/mmguard perms_acl=1
+[ 2063.443948] mmguard: DENIEGA pid=15494 tgid=15494 uid=1000 comm=attacker mmap rechazado (PROT_WRITE sin permiso de escritura) prot=rw- SHARED len=4096 off=0 err=13
+[ 2063.443976] mmguard: CIERRA pid=15494 tgid=15494 uid=1000 comm=attacker close() de /dev/mmguard
+[ 2063.449645] mmguard: OPEN pid=15505 tgid=15505 uid=1000 comm=attacker open() de /dev/mmguard perms_acl=1
+[ 2063.449648] mmguard: DENIEGA pid=15505 tgid=15505 uid=1000 comm=attacker mmap rechazado (PROT_WRITE sin permiso de escritura) prot=rw- PRIVATE len=4096 off=0 err=13
+[ 2063.449675] mmguard: CIERRA pid=15505 tgid=15505 uid=1000 comm=attacker close() de /dev/mmguard
+[ 2063.455490] mmguard: OPEN pid=15516 tgid=15516 uid=1000 comm=attacker open() de /dev/mmguard perms_acl=1
+[ 2063.455494] mmguard: DENIEGA pid=15516 tgid=15516 uid=1000 comm=attacker mmap rechazado (PROT_EXEC prohibido) prot=r-x PRIVATE len=4096 off=0 err=13
+[ 2063.455521] mmguard: CIERRA pid=15516 tgid=15516 uid=1000 comm=attacker close() de /dev/mmguard
+[ 2063.461522] mmguard: OPEN pid=15527 tgid=15527 uid=1000 comm=attacker open() de /dev/mmguard perms_acl=1
+[ 2063.461526] mmguard: MMAP pid=15527 tgid=15527 uid=1000 comm=attacker mmap autorizado perms=r- PRIVATE len=4096 off=0 flags_vma=0x4064091
+[ 2063.461537] mmguard: FALLO pid=15527 tgid=15527 uid=1000 comm=attacker pagina=0 va=0xfc71485f9000 lectura
+[ 2063.461631] mmguard: CIERRA pid=15527 tgid=15527 uid=1000 comm=attacker close() de /dev/mmguard
+[ 2063.468390] mmguard: OPEN pid=15539 tgid=15539 uid=1000 comm=attacker open() de /dev/mmguard perms_acl=1
+[ 2063.468394] mmguard: MMAP pid=15539 tgid=15539 uid=1000 comm=attacker mmap autorizado perms=r- PRIVATE len=4096 off=0 flags_vma=0x4064091
+[ 2063.468423] mmguard: CIERRA pid=15539 tgid=15539 uid=1000 comm=attacker close() de /dev/mmguard
+[ 2063.476612] mmguard: OPEN pid=15550 tgid=15550 uid=1000 comm=attacker open() de /dev/mmguard perms_acl=1
+[ 2063.476616] mmguard: MMAP pid=15550 tgid=15550 uid=1000 comm=attacker mmap autorizado perms=r- PRIVATE len=4096 off=0 flags_vma=0x4064011
+[ 2063.476631] mmguard: FALLO pid=15550 tgid=15550 uid=1000 comm=attacker pagina=0 va=0xe2a16c94f000 lectura
+[ 2063.476663] mmguard: CIERRA pid=15550 tgid=15550 uid=1000 comm=attacker close() de /dev/mmguard
+[ 2063.483339] mmguard: OPEN pid=15562 tgid=15562 uid=1001 comm=client open() de /dev/mmguard perms_acl=3
+[ 2063.483343] mmguard: MMAP pid=15562 tgid=15562 uid=1001 comm=client mmap autorizado perms=rw SHARED len=4096 off=8192 flags_vma=0x40640bb
+[ 2063.483355] mmguard: FALLO pid=15562 tgid=15562 uid=1001 comm=client pagina=2 va=0xe22803c7e000 escritura
+[ 2063.483356] mmguard: ESCRIBE pid=15562 tgid=15562 uid=1001 comm=client pagina=2 marcada sucia (pendiente de sellar)
+[ 2063.483363] mmguard: SELLA pid=15562 tgid=15562 uid=1001 comm=client sellado: 1 pagina(s) re-cifradas (ret=0)
+[ 2063.483392] mmguard: CIERRA pid=15562 tgid=15562 uid=1001 comm=client close() de /dev/mmguard
+[ 2063.487426] mmguard: OPEN pid=15564 tgid=15564 uid=1000 comm=client open() de /dev/mmguard perms_acl=1
+[ 2063.487430] mmguard: MMAP pid=15564 tgid=15564 uid=1000 comm=client mmap autorizado perms=r- PRIVATE len=4096 off=8192 flags_vma=0x4064091
+[ 2063.487440] mmguard: FALLO pid=15564 tgid=15564 uid=1000 comm=client pagina=2 va=0xe0f2c6c58000 lectura
+[ 2063.487464] mmguard: CIERRA pid=15564 tgid=15564 uid=1000 comm=client close() de /dev/mmguard
+[ 2063.488398] mmguard: OPEN pid=15567 tgid=15567 uid=0 comm=mmgctl open() de /dev/mmguard perms_acl=1
+[ 2063.488425] mmguard: CIERRA pid=15567 tgid=15567 uid=0 comm=mmgctl close() de /dev/mmguard
+[ 2063.503931] mmguard: OPEN pid=15575 tgid=15575 uid=1000 comm=racer open() de /dev/mmguard perms_acl=1
+[ 2063.503936] mmguard: MMAP pid=15575 tgid=15575 uid=1000 comm=racer mmap autorizado perms=r- PRIVATE len=4096 off=0 flags_vma=0x4064011
+[ 2063.503987] mmguard: FALLO pid=15575 tgid=15575 uid=1000 comm=racer pagina=0 va=0xe0b814a52000 lectura
+[ 2063.504041] mmguard: FALLO pid=15575 tgid=15575 uid=1000 comm=racer pagina=0 va=0xe0b814a52000 lectura
+[ 2063.504043] mmguard: FALLO pid=15575 tgid=15575 uid=1000 comm=racer pagina=0 va=0xe0b814a52000 lectura
+[ 2063.504046] mmguard: FALLO pid=15575 tgid=15575 uid=1000 comm=racer pagina=0 va=0xe0b814a52000 lectura
+[ 2063.504049] mmguard: FALLO pid=15575 tgid=15575 uid=1000 comm=racer pagina=0 va=0xe0b814a52000 lectura
+[ 2063.504051] mmguard: FALLO pid=15575 tgid=15575 uid=1000 comm=racer pagina=0 va=0xe0b814a52000 lectura
+[ 2063.504054] mmguard: FALLO pid=15575 tgid=15575 uid=1000 comm=racer pagina=0 va=0xe0b814a52000 lectura
+[ 2063.504056] mmguard: FALLO pid=15575 tgid=15575 uid=1000 comm=racer pagina=0 va=0xe0b814a52000 lectura
+[ 2063.504058] mmguard: FALLO pid=15575 tgid=15575 uid=1000 comm=racer pagina=0 va=0xe0b814a52000 lectura
+[ 2063.504061] mmguard: FALLO pid=15575 tgid=15575 uid=1000 comm=racer pagina=0 va=0xe0b814a52000 lectura
+[ 2063.504063] mmguard: FALLO pid=15575 tgid=15575 uid=1000 comm=racer pagina=0 va=0xe0b814a52000 lectura
+[ 2063.504066] mmguard: FALLO pid=15575 tgid=15575 uid=1000 comm=racer pagina=0 va=0xe0b814a52000 lectura
+[ 2067.823483] mmguard: OPEN pid=15575 tgid=15575 uid=1000 comm=racer open() de /dev/mmguard perms_acl=1
+[ 2067.823497] mmguard: MMAP pid=15575 tgid=15575 uid=1000 comm=racer mmap autorizado perms=r- PRIVATE len=4096 off=0 flags_vma=0x4064091
+[ 2067.823585] mmguard: CIERRA pid=15575 tgid=15575 uid=1000 comm=racer close() de /dev/mmguard
+[ 2067.823589] mmguard: CIERRA pid=15575 tgid=15575 uid=1000 comm=racer close() de /dev/mmguard
+[ 2067.826689] mmguard: OPEN pid=15586 tgid=15586 uid=0 comm=mmgctl open() de /dev/mmguard perms_acl=1
+[ 2067.826721] mmguard: CIERRA pid=15586 tgid=15586 uid=0 comm=mmgctl close() de /dev/mmguard
+[ 2072.759900] mmguard: OPEN pid=15611 tgid=15611 uid=1000 comm=stress open() de /dev/mmguard perms_acl=1
+[ 2072.759907] mmguard: MMAP pid=15611 tgid=15611 uid=1000 comm=stress mmap autorizado perms=r- PRIVATE len=4096 off=28672 flags_vma=0x4064091
+[ 2072.759925] mmg_log: 1991931 callbacks suppressed
+[ 2072.759926] mmguard: FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+[ 2072.759930] mmguard: FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+[ 2072.759933] mmguard: FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+[ 2072.759935] mmguard: FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+[ 2072.759938] mmguard: FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+[ 2072.759941] mmguard: FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+[ 2072.759943] mmguard: FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+[ 2072.759948] mmguard: FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+[ 2072.759952] mmguard: FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+[ 2072.759954] mmguard: FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+[ 2072.759957] mmguard: FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+[ 2072.759961] mmguard: FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+[ 2072.759964] mmguard: FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+[ 2072.759967] mmguard: FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+[ 2072.759970] mmguard: FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+[ 2072.759973] mmguard: FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+[ 2072.759975] mmguard: FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+[ 2072.759978] mmguard: FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+[ 2072.759981] mmguard: FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+[ 2072.759984] mmguard: FALLO pid=15611 tgid=15611 uid=1000 comm=stress pagina=7 va=0xf3f8f25d4000 lectura
+[ 2072.760392] mmguard: OPEN pid=15612 tgid=15612 uid=1001 comm=stress open() de /dev/mmguard perms_acl=3
+[ 2072.760396] mmguard: MMAP pid=15612 tgid=15612 uid=1001 comm=stress mmap autorizado perms=rw SHARED len=4096 off=28672 flags_vma=0x40640bb
+[ 2072.760663] mmguard: OPEN pid=15613 tgid=15613 uid=1000 comm=stress open() de /dev/mmguard perms_acl=1
+[ 2072.760667] mmguard: MMAP pid=15613 tgid=15613 uid=1000 comm=stress mmap autorizado perms=r- PRIVATE len=4096 off=28672 flags_vma=0x4064091
+[ 2076.845329] mmguard: CIERRA pid=15611 tgid=15611 uid=1000 comm=stress close() de /dev/mmguard
+[ 2076.845328] mmguard: CIERRA pid=15613 tgid=15613 uid=1000 comm=stress close() de /dev/mmguard
+[ 2076.845330] mmguard: CIERRA pid=15612 tgid=15612 uid=1001 comm=stress close() de /dev/mmguard
+[ 2076.850338] mmguard: OPEN pid=15629 tgid=15629 uid=0 comm=stress open() de /dev/mmguard perms_acl=1
+[ 2076.850341] mmguard: MMAP pid=15629 tgid=15629 uid=0 comm=stress mmap autorizado perms=r- PRIVATE len=4096 off=28672 flags_vma=0x4064091
+[ 2076.850375] mmguard: CIERRA pid=15629 tgid=15629 uid=0 comm=stress close() de /dev/mmguard
+[ 2076.852445] mmguard: OPEN pid=15639 tgid=15639 uid=0 comm=mmgctl open() de /dev/mmguard perms_acl=1
+[ 2076.852469] mmguard: CIERRA pid=15639 tgid=15639 uid=0 comm=mmgctl close() de /dev/mmguard
+[ 2076.853037] mmguard: OPEN pid=15641 tgid=15641 uid=0 comm=mmgctl open() de /dev/mmguard perms_acl=1
+[ 2076.853079] mmguard: CIERRA pid=15641 tgid=15641 uid=0 comm=mmgctl close() de /dev/mmguard
+[ 2076.853387] mmguard: OPEN pid=15643 tgid=15643 uid=0 comm=attacker open() de /dev/mmguard perms_acl=1
+[ 2076.853389] mmguard: MMAP pid=15643 tgid=15643 uid=0 comm=attacker mmap autorizado perms=r- SHARED len=4096 off=0 flags_vma=0x4064099
+[ 2076.853391] mmguard: OPEN pid=15643 tgid=15643 uid=0 comm=attacker open() de /dev/mmguard perms_acl=1
+[ 2076.853393] mmguard: CIERRA pid=15643 tgid=15643 uid=0 comm=attacker close() de /dev/mmguard
+[ 2076.853399] mmguard: ADMIN pid=15643 tgid=15643 uid=0 comm=attacker MODO DEPURACION: corrompe 1 byte de la pagina en claro 0 de la sesion
+[ 2076.853410] mmguard: INTEGRIDAD pid=15643 tgid=15643 uid=0 comm=attacker pagina=0 MODIFICADA sin autorizacion en memoria (SHA-256 no coincide)
+[ 2076.853415] mmguard: INTEGRIDAD pid=15643 tgid=15643 uid=0 comm=attacker pagina=0 reparada desde la boveda cifrada
+[ 2076.853416] mmguard: OPEN pid=15643 tgid=15643 uid=0 comm=attacker open() de /dev/mmguard perms_acl=1
+[ 2076.853417] mmguard: CIERRA pid=15643 tgid=15643 uid=0 comm=attacker close() de /dev/mmguard
+[ 2076.853436] mmguard: CIERRA pid=15643 tgid=15643 uid=0 comm=attacker close() de /dev/mmguard
+[ 2076.855451] mmguard: OPEN pid=15653 tgid=15653 uid=0 comm=attacker open() de /dev/mmguard perms_acl=1
+[ 2076.855453] mmguard: OPEN pid=15653 tgid=15653 uid=0 comm=attacker open() de /dev/mmguard perms_acl=1
+[ 2076.855454] mmguard: CIERRA pid=15653 tgid=15653 uid=0 comm=attacker close() de /dev/mmguard
+[ 2076.855456] mmguard: ADMIN pid=15653 tgid=15653 uid=0 comm=attacker MODO DEPURACION: voltea 1 bit del cifrado de la pagina 3
+[ 2076.855463] mmguard: INTEGRIDAD pid=15653 tgid=15653 uid=0 comm=attacker VERIFY pagina=3 MAC invalido (cifrado alterado)
+[ 2076.855521] mmguard: OPEN pid=15654 tgid=15654 uid=0 comm=attacker open() de /dev/mmguard perms_acl=1
+[ 2076.855523] mmguard: MMAP pid=15654 tgid=15654 uid=0 comm=attacker mmap autorizado perms=r- PRIVATE len=4096 off=12288 flags_vma=0x4064091
+[ 2076.855530] mmguard: INTEGRIDAD pid=15654 tgid=15654 uid=0 comm=attacker pagina=3 no se pudo descifrar/autenticar (err=-74) -> SIGBUS
+[ 2076.855541] mmguard: CIERRA pid=15654 tgid=15654 uid=0 comm=attacker close() de /dev/mmguard
+[ 2076.855561] mmguard: OPEN pid=15653 tgid=15653 uid=0 comm=attacker open() de /dev/mmguard perms_acl=1
+[ 2076.855563] mmguard: CIERRA pid=15653 tgid=15653 uid=0 comm=attacker close() de /dev/mmguard
+[ 2076.855576] mmguard: ADMIN pid=15653 tgid=15653 uid=0 comm=attacker LOAD offset=12288 len=4096 ret=0
+[ 2076.855615] mmguard: CIERRA pid=15653 tgid=15653 uid=0 comm=attacker close() de /dev/mmguard
+[ 2076.857534] mmguard: OPEN pid=15663 tgid=15663 uid=0 comm=mmgctl open() de /dev/mmguard perms_acl=1
+[ 2076.857581] mmguard: CIERRA pid=15663 tgid=15663 uid=0 comm=mmgctl close() de /dev/mmguard
+[ 2076.867402] mmguard: OPEN pid=15667 tgid=15667 uid=0 comm=mmgctl open() de /dev/mmguard perms_acl=1
+[ 2076.867558] mmguard: CIERRA pid=15667 tgid=15667 uid=0 comm=mmgctl close() de /dev/mmguard
+[ 2076.867931] mmguard: OPEN pid=15668 tgid=15668 uid=0 comm=client open() de /dev/mmguard perms_acl=1
+[ 2076.867933] mmguard: MMAP pid=15668 tgid=15668 uid=0 comm=client mmap autorizado perms=r- PRIVATE len=4096 off=0 flags_vma=0x4064091
+[ 2076.867965] mmguard: CIERRA pid=15668 tgid=15668 uid=0 comm=client close() de /dev/mmguard
+[ 2076.885458] mmguard: OPEN pid=15680 tgid=15680 uid=1000 comm=client open() de /dev/mmguard perms_acl=1
+[ 2076.885461] mmguard: MMAP pid=15680 tgid=15680 uid=1000 comm=client mmap autorizado perms=r- PRIVATE len=4096 off=0 flags_vma=0x4064091
+[ 2080.815694] mmguard: CIERRA pid=15680 tgid=15680 uid=1000 comm=client close() de /dev/mmguard
+[ 2080.854887] mmguard: OPEN pid=15692 tgid=15692 uid=1000 comm=attacker open() de /dev/mmguard perms_acl=1
+[ 2080.854895] mmguard: MMAP pid=15692 tgid=15692 uid=1000 comm=attacker mmap autorizado perms=r- PRIVATE len=4096 off=0 flags_vma=0x4064091
+[ 2080.854914] mmg_log: 3317045 callbacks suppressed
+[ 2080.854915] mmguard: FALLO pid=15692 tgid=15692 uid=1000 comm=attacker pagina=0 va=0xe4a9ca625000 lectura
+[ 2081.835380] mmguard: OPEN pid=15693 tgid=15693 uid=0 comm=mmgctl open() de /dev/mmguard perms_acl=1
+[ 2081.835387] mmguard: ADMIN pid=15693 tgid=15693 uid=0 comm=mmgctl ACL: uid=1000 revocado ret=0
+[ 2081.835431] mmguard: CIERRA pid=15693 tgid=15693 uid=0 comm=mmgctl close() de /dev/mmguard
+[ 2082.836012] mmguard: DENIEGA pid=15692 tgid=15692 uid=1000 comm=attacker fallo de pagina=0: UID revocado en la ACL -> SIGBUS
+[ 2082.836124] mmguard: CIERRA pid=15692 tgid=15692 uid=1000 comm=attacker close() de /dev/mmguard
+[ 2082.840987] mmguard: OPEN pid=15707 tgid=15707 uid=0 comm=mmgctl open() de /dev/mmguard perms_acl=1
+[ 2082.840992] mmguard: ADMIN pid=15707 tgid=15707 uid=0 comm=mmgctl ACL: uid=1000 perms=1 ret=0
+[ 2082.841026] mmguard: CIERRA pid=15707 tgid=15707 uid=0 comm=mmgctl close() de /dev/mmguard
+[ 2082.842023] mmguard: OPEN pid=15710 tgid=15710 uid=0 comm=mmgctl open() de /dev/mmguard perms_acl=1
+[ 2082.842057] mmguard: CIERRA pid=15710 tgid=15710 uid=0 comm=mmgctl close() de /dev/mmguard
+[ 2082.858808] mmguard: KPROBE pid=15713 tgid=15713 uid=1000 comm=python3 mmap de archivo vigilado /tmp/mmguard_vigilado_datos.txt prot=r--
+[ 2082.861636] mmguard: OPEN pid=15715 tgid=15715 uid=0 comm=mmgctl open() de /dev/mmguard perms_acl=1
+[ 2082.861674] mmguard: CIERRA pid=15715 tgid=15715 uid=0 comm=mmgctl close() de /dev/mmguard
+[ 2082.873427] mmguard: OPEN pid=15731 tgid=15731 uid=0 comm=mmgctl open() de /dev/mmguard perms_acl=1
+[ 2082.873466] mmguard: CIERRA pid=15731 tgid=15731 uid=0 comm=mmgctl close() de /dev/mmguard
+[ 2084.869978] mmguard: OPEN pid=15745 tgid=15745 uid=1000 comm=racer open() de /dev/mmguard perms_acl=1
+[ 2084.870002] mmguard: MMAP pid=15745 tgid=15745 uid=1000 comm=racer mmap autorizado perms=r- PRIVATE len=4096 off=0 flags_vma=0x4064011
+[ 2084.870241] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2084.871198] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2084.871207] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2084.871210] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2084.871213] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2084.871215] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2084.871218] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2084.871220] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2084.871223] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2084.871225] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2084.871228] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2084.871230] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2084.871233] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2084.871235] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2084.871238] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2084.871240] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2084.871243] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2084.871245] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2084.871247] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2085.812675] mmg_log: 300140 callbacks suppressed
+[ 2085.812688] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2085.812692] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2085.812714] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2085.812764] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2085.812768] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2085.812770] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2085.812773] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2085.812775] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2085.812778] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2085.812780] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2085.812783] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2085.812785] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2085.812787] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2085.812790] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2085.812792] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2085.812795] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2085.812797] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2085.812800] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2085.812802] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2085.812805] mmguard: FALLO pid=15745 tgid=15745 uid=1000 comm=racer pagina=0 va=0xfa30a157f000 lectura
+[ 2085.868755] mmguard: OPEN pid=15745 tgid=15745 uid=1000 comm=racer open() de /dev/mmguard perms_acl=1
+[ 2085.868774] mmguard: MMAP pid=15745 tgid=15745 uid=1000 comm=racer mmap autorizado perms=r- PRIVATE len=4096 off=0 flags_vma=0x4064091
+[ 2085.868841] mmguard: CIERRA pid=15745 tgid=15745 uid=1000 comm=racer close() de /dev/mmguard
+[ 2085.868846] mmguard: CIERRA pid=15745 tgid=15745 uid=1000 comm=racer close() de /dev/mmguard
+[ 2087.422694] mmguard: OPEN pid=15776 tgid=15776 uid=1002 comm=ldp_victim open() de /dev/mmguard perms_acl=0
+[ 2087.422699] mmguard: DENIEGA pid=15776 tgid=15776 uid=1002 comm=ldp_victim mmap rechazado (uid no autorizado) prot=r-- PRIVATE len=4096 off=0 err=13
+[ 2087.422732] mmguard: CIERRA pid=15776 tgid=15776 uid=1002 comm=ldp_victim close() de /dev/mmguard
+[ 2087.428307] mmguard: OPEN pid=15778 tgid=15778 uid=1002 comm=ldp_victim_stat open() de /dev/mmguard perms_acl=0
+[ 2087.428313] mmguard: DENIEGA pid=15778 tgid=15778 uid=1002 comm=ldp_victim_stat mmap rechazado (uid no autorizado) prot=r-- PRIVATE len=4096 off=0 err=13
+[ 2087.428338] mmguard: CIERRA pid=15778 tgid=15778 uid=1002 comm=ldp_victim_stat close() de /dev/mmguard
+[ 2087.443031] mmguard: descargado
+[ 2087.461100] mmguard: boveda lista: 16 paginas cifradas con ctr-aes-ce
+[ 2087.461332] mmguard: cargado: /dev/mmguard, verify_on_fault=1 use_vm_io=0 allow_debug=1 watch_path="/tmp/mmguard_vigilado"
+[ 2087.462393] mmguard: OPEN pid=15794 tgid=15794 uid=0 comm=mmgctl open() de /dev/mmguard perms_acl=0
+[ 2087.462396] mmguard: ADMIN pid=15794 tgid=15794 uid=0 comm=mmgctl ACL: uid=1000 perms=1 ret=0
+[ 2087.462420] mmguard: CIERRA pid=15794 tgid=15794 uid=0 comm=mmgctl close() de /dev/mmguard
+[ 2087.463100] mmguard: OPEN pid=15796 tgid=15796 uid=0 comm=mmgctl open() de /dev/mmguard perms_acl=0
+[ 2087.463103] mmguard: ADMIN pid=15796 tgid=15796 uid=0 comm=mmgctl ACL: uid=1001 perms=3 ret=0
+[ 2087.463123] mmguard: CIERRA pid=15796 tgid=15796 uid=0 comm=mmgctl close() de /dev/mmguard
+[ 2087.463360] mmguard: OPEN pid=15797 tgid=15797 uid=0 comm=mmgctl open() de /dev/mmguard perms_acl=0
+[ 2087.463363] mmguard: ADMIN pid=15797 tgid=15797 uid=0 comm=mmgctl ACL: uid=0 perms=1 ret=0
+[ 2087.463387] mmguard: CIERRA pid=15797 tgid=15797 uid=0 comm=mmgctl close() de /dev/mmguard
+[ 2087.468546] mmguard: OPEN pid=15800 tgid=15800 uid=1000 comm=racer open() de /dev/mmguard perms_acl=1
+[ 2087.468552] mmguard: MMAP pid=15800 tgid=15800 uid=1000 comm=racer mmap autorizado perms=r- PRIVATE len=4096 off=0 flags_vma=0x4060011
+[ 2087.468624] mmguard: FALLO pid=15800 tgid=15800 uid=1000 comm=racer pagina=0 va=0xee94b6405000 lectura
+[ 2087.468628] mmguard: FALLO pid=15800 tgid=15800 uid=1000 comm=racer pagina=0 va=0xee94b6405000 lectura
+[ 2087.468630] mmguard: FALLO pid=15800 tgid=15800 uid=1000 comm=racer pagina=0 va=0xee94b6405000 lectura
+[ 2087.468633] mmguard: FALLO pid=15800 tgid=15800 uid=1000 comm=racer pagina=0 va=0xee94b6405000 lectura
+[ 2087.468635] mmguard: FALLO pid=15800 tgid=15800 uid=1000 comm=racer pagina=0 va=0xee94b6405000 lectura
+[ 2087.468638] mmguard: FALLO pid=15800 tgid=15800 uid=1000 comm=racer pagina=0 va=0xee94b6405000 lectura
+[ 2087.468640] mmguard: FALLO pid=15800 tgid=15800 uid=1000 comm=racer pagina=0 va=0xee94b6405000 lectura
+[ 2087.468643] mmguard: FALLO pid=15800 tgid=15800 uid=1000 comm=racer pagina=0 va=0xee94b6405000 lectura
+[ 2087.468645] mmguard: FALLO pid=15800 tgid=15800 uid=1000 comm=racer pagina=0 va=0xee94b6405000 lectura
+[ 2087.468648] mmguard: FALLO pid=15800 tgid=15800 uid=1000 comm=racer pagina=0 va=0xee94b6405000 lectura
+[ 2087.468650] mmguard: FALLO pid=15800 tgid=15800 uid=1000 comm=racer pagina=0 va=0xee94b6405000 lectura
+[ 2087.468653] mmguard: FALLO pid=15800 tgid=15800 uid=1000 comm=racer pagina=0 va=0xee94b6405000 lectura
+[ 2087.468655] mmguard: FALLO pid=15800 tgid=15800 uid=1000 comm=racer pagina=0 va=0xee94b6405000 lectura
+[ 2087.468658] mmguard: FALLO pid=15800 tgid=15800 uid=1000 comm=racer pagina=0 va=0xee94b6405000 lectura
+[ 2087.468666] mmguard: FALLO pid=15800 tgid=15800 uid=1000 comm=racer pagina=0 va=0xee94b6405000 lectura
+[ 2087.468668] mmguard: FALLO pid=15800 tgid=15800 uid=1000 comm=racer pagina=0 va=0xee94b6405000 lectura
+[ 2087.468671] mmguard: FALLO pid=15800 tgid=15800 uid=1000 comm=racer pagina=0 va=0xee94b6405000 lectura
+[ 2087.468674] mmguard: FALLO pid=15800 tgid=15800 uid=1000 comm=racer pagina=0 va=0xee94b6405000 lectura
+[ 2087.468676] mmguard: FALLO pid=15800 tgid=15800 uid=1000 comm=racer pagina=0 va=0xee94b6405000 lectura
+[ 2087.468678] mmguard: FALLO pid=15800 tgid=15800 uid=1000 comm=racer pagina=0 va=0xee94b6405000 lectura
+[ 2090.773287] mmguard: OPEN pid=15800 tgid=15800 uid=1000 comm=racer open() de /dev/mmguard perms_acl=1
+[ 2090.773315] mmguard: MMAP pid=15800 tgid=15800 uid=1000 comm=racer mmap autorizado perms=r- PRIVATE len=4096 off=0 flags_vma=0x4060091
+[ 2090.773440] mmguard: CIERRA pid=15800 tgid=15800 uid=1000 comm=racer close() de /dev/mmguard
+[ 2090.773448] mmguard: CIERRA pid=15800 tgid=15800 uid=1000 comm=racer close() de /dev/mmguard
+[ 2090.802699] mmguard: OPEN pid=15814 tgid=15814 uid=1000 comm=client open() de /dev/mmguard perms_acl=1
+[ 2090.802704] mmguard: MMAP pid=15814 tgid=15814 uid=1000 comm=client mmap autorizado perms=r- PRIVATE len=4096 off=0 flags_vma=0x4060091
+[ 2094.761203] mmguard: CIERRA pid=15814 tgid=15814 uid=1000 comm=client close() de /dev/mmguard
+[ 2094.777242] systemd-journald[303]: Time jumped backwards, rotating. (Dropped 1 similar message(s))
+[ 2094.780267] mmguard: descargado

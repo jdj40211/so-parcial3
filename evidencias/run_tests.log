@@ -1,0 +1,136 @@
+
+=== Preparación ===
+kernel: 6.8.0-147-generic  arch: aarch64  fecha: 2026-11-17T13:41:22-05:00
+6.8.0-147-generic SMP preempt mod_unload modversions aarch64
+usuarios: mmreader=1000 mmwriter=1001 mmintruso=1002
+# mmguard: auditoría de mapeos protegidos
+parametros: verify_on_fault=1 use_vm_io=1 allow_debug=1 watch_path="/tmp/mmguard_vigilado"
+boveda: 16 paginas de 4096 bytes, AES-256-CTR + HMAC-SHA256
+
+=== T01 Acceso autorizado lee el contenido descifrado ===
+    mmreader lee: TOP-SECRET mmguard: la clave de la boveda nunca sale del kernel. Codigo de lanzamiento = 7
+[PASA]  autorizado (mmreader, lectura) ve el texto en claro
+    mmreader (MAP_PRIVATE) pagina 5: PAGINA-05: contenido protegido de la boveda, pagina numero 5
+[PASA]  lectura con MAP_PRIVATE de otra pagina
+
+=== T02 Usuario no autorizado rechazado ===
+    [OK] unauth: UID 1002: mmap SHARED -> Permission denied, mmap PRIVATE -> Permission denied (esperado EACCES)
+    mmintruso: mmap: Permission denied
+
+=== T03 Intentos de subir permisos y evadir el mapeo ===
+    [OK] mprotect: mprotect(+WRITE) -> Permission denied, mprotect(+EXEC) -> Permission denied (esperado EACCES; VM_MAYWRITE/VM_MAYEXEC limpios)
+    [OK] shared-write: mmap(PROT_WRITE, MAP_SHARED) de un lector -> Permission denied (esperado EACCES)
+    [INFO] control: /etc/hostname O_RDONLY + PROT_WRITE|MAP_PRIVATE -> PERMITIDO (Linux lo permite: COW privado)
+    [OK] private-write: mmguard O_RDONLY + PROT_WRITE|MAP_PRIVATE -> Permission denied (esperado EACCES)
+    [OK] exec: mmap(PROT_EXEC) -> Permission denied (esperado EACCES)
+    [OK] fork: el hijo accede a la region heredada -> SIGSEGV (esperado SIGSEGV por VM_DONTCOPY)
+    [OK] mremap: mremap(agrandar x2) -> Bad address (esperado fallo por VM_DONTEXPAND)
+    [OK] procmem: pwrite(/proc/self/mem) -> Input/output error; pread(/proc/self/mem) -> Input/output error; contenido intacto=si
+
+=== T04 Escritura controlada y sellado (msync) ===
+    escrito y sellado en pagina 2: DATO NUEVO del escritor autorizado
+    mmreader ve: DATO NUEVO del escritor autorizado
+[PASA]  el lector ve la version sellada por el escritor
+    mmap_ok=8 mmap_denied=6 faults=6 faults_decrypt=6 faults_refresh=0 mkwrite=1 seals=1 seal_pages=1 integrity_fail=0 healed=0 remote_denied=0 write_denied=2 probe_mmap=0
+[PASA]  page_mkwrite y sellado contabilizados
+[PASA]  auditoria registra ESCRIBE y SELLA en /proc/mmguard
+
+=== T05 Carrera estilo Dirty COW (madvise DONTNEED + /proc/self/mem), 5 s ===
+    [INFO] vault: 0 pwrite(/proc/self/mem) exitosos, 11555318 fallidos, 18251342 madvise(DONTNEED), 1433329 lecturas, 0 veces el mapa mostro contenido distinto, 0 senales
+    [OK] dirtycow-vault: escrituras exitosas=0, desviaciones del contenido=0, sesion nueva ve el original=si
+    mmap_ok=10 mmap_denied=6 faults=1991949 faults_decrypt=8 faults_refresh=0 mkwrite=1 seals=1 seal_pages=1 integrity_fail=0 healed=0 remote_denied=0 write_denied=2 probe_mmap=0
+
+=== T06 Control: la misma carrera contra un archivo normal ===
+    [INFO] control: 2141809 pwrite(/proc/self/mem) exitosos, 0 fallidos, 11802974 madvise(DONTNEED), 4252546 lecturas, 828293 veces el mapa mostro contenido distinto, 0 senales
+    [OK] dirtycow-control: archivo normal: el mapa privado cambio 828293 veces (COW legitimo) pero el ARCHIVO sigue intacto=si (mitigacion del kernel actual: FOLL_COW eliminado, COW con refcount/anon_exclusive)
+
+=== T06b Concurrencia: 1 escritor sellando + 2 lectores refallando (4 s) ===
+    [OK] stress-escritor: 424308 rondas de escribir+msync terminadas sin errores
+    FINAL 116
+    [OK] stress-lector: 1031696 rondas de DONTNEED+leer sin senales ni bloqueos
+    [INFO] versiones distintas observadas por el lector: 423822; pares (primer,ultimo byte) con 2 versiones por 2 fallos: 0
+    [OK] stress-lector: 1010640 rondas de DONTNEED+leer sin senales ni bloqueos
+    [INFO] versiones distintas observadas por el lector: 421845; pares (primer,ultimo byte) con 2 versiones por 2 fallos: 184
+    [OK] stress-final: sesion nueva: 0 bytes de 4096 distintos de la ultima version sellada (0x74)
+[PASA]  sin violaciones de integridad tras la concurrencia
+    mmap_ok=14 mmap_denied=6 faults=4460414 faults_decrypt=12 faults_refresh=845713 mkwrite=424309 seals=424309 seal_pages=424309 integrity_fail=0 healed=0 remote_denied=0 write_denied=2 probe_mmap=0
+
+=== T07 Integridad: modificación indebida detectada ===
+    [INFO] byte 0 tras la corrupcion simulada: 0xab (antes 0x54)
+    [OK] integ-session: tras refallar: contenido restaurado=si, violaciones +1, reparadas +1
+    [OK] integ-vault: VERIFY reporta 1 pagina(s) corrupta(s); lector nuevo -> SIGBUS; violaciones +2
+    paginas corruptas: 0
+[PASA]  tras reprovisionar, VERIFY reporta la boveda sana
+
+=== T08 El contenido en la memoria del kernel está cifrado (lectura de /proc/kcore) ===
+    [OK] kcore-coincide: los 4096 bytes en kaddr=0xffff2c620735b000 leidos de /proc/kcore coinciden con el cifrado del modulo
+    [OK] kcore-sin-secreto: ni 'TOP-SECRET' ni fragmentos del texto aparecen en la memoria del kernel
+    [OK] kcore-entropia: entropia de Shannon = 7.950 bits/byte (texto en claro ~ 0.2; maximo 8)
+    [OK] kcore-sin-patrones: bloques de 16 bytes repetidos: 0 (el texto en claro tiene ~250 bloques en cero)
+    [OK] claro-solo-en-el-proceso: el proceso autorizado ve: 'TOP-SECRET mmguard: la clave de la boved'
+    [INFO] primeros 32 bytes cifrados en kaddr: 07c005487273dfc6d87e012a630cf01c220218628d757128463e336014ad23ea
+
+=== T09 Root no puede leer el texto en claro desde fuera (VM_IO) ===
+    [OK] remoto-proc-mem: root no puede leer /proc/15680/mem en 0xfcb44f0dc000: Input/output error
+    [OK] remoto-process_vm_readv: process_vm_readv -> Bad address
+    [OK] vmflags: VmFlags=rd mr ms io dc de dd  (io=VM_IO dc=DONTCOPY de=DONTEXPAND dd=DONTDUMP; sin wr/ex/mw/me)
+
+=== T10 Revocación de UID en la ACL surte efecto en el siguiente fallo ===
+    ACL: uid=1000 revocado
+    LISTO
+    [OK] revoke: antes de revocar: lee; tras revocar y refallar: SIGBUS (esperado SIGBUS)
+
+=== T11 Auditoría con kprobe sobre security_mmap_file (ruta vigilada /tmp/mmguard_vigilado*) ===
+    mmap normal de archivo vigilado: b'contenido '
+    probe_mmap: 0 -> 1
+[PASA]  el kprobe auditó el mmap del archivo vigilado
+
+=== T12 Auditoría: dmesg y /proc/mmguard ===
+[PASA]  dmesg tiene eventos MMAP con pid/uid/comm (19 lineas)
+[PASA]  dmesg tiene eventos FALLO con pid/uid/comm (39 lineas)
+[PASA]  dmesg tiene eventos DENIEGA con pid/uid/comm (7 lineas)
+[PASA]  dmesg tiene eventos ESCRIBE con pid/uid/comm (1 lineas)
+[PASA]  dmesg tiene eventos SELLA con pid/uid/comm (1 lineas)
+[PASA]  dmesg tiene eventos INTEGRIDAD con pid/uid/comm (4 lineas)
+[PASA]  dmesg tiene eventos KPROBE con pid/uid/comm (1 lineas)
+[PASA]  dmesg tiene eventos ADMIN con pid/uid/comm (8 lineas)
+    [ 2063.426871] mmguard: DENIEGA pid=15469 tgid=15469 uid=1002 comm=attacker mmap rechazado (uid no autorizado) prot=r-- SHARED len=4096 off=0 err=13
+    [ 2063.426873] mmguard: DENIEGA pid=15469 tgid=15469 uid=1002 comm=attacker mmap rechazado (uid no autorizado) prot=r-- PRIVATE len=4096 off=0 err=13
+    [ 2063.433521] mmguard: DENIEGA pid=15480 tgid=15480 uid=1002 comm=client mmap rechazado (uid no autorizado) prot=r-- PRIVATE len=4096 off=0 err=13
+    [ 2063.443948] mmguard: DENIEGA pid=15494 tgid=15494 uid=1000 comm=attacker mmap rechazado (PROT_WRITE sin permiso de escritura) prot=rw- SHARED len=4096 off=0 err=13
+    [ 2063.449648] mmguard: DENIEGA pid=15505 tgid=15505 uid=1000 comm=attacker mmap rechazado (PROT_WRITE sin permiso de escritura) prot=rw- PRIVATE len=4096 off=0 err=13
+    [ 2063.455494] mmguard: DENIEGA pid=15516 tgid=15516 uid=1000 comm=attacker mmap rechazado (PROT_EXEC prohibido) prot=r-x PRIVATE len=4096 off=0 err=13
+    mmap_ok=19 mmap_denied=6 faults=4460421 faults_decrypt=16 faults_refresh=845713 mkwrite=424309 seals=424309 seal_pages=424309 integrity_fail=3 healed=1 remote_denied=1 write_denied=2 probe_mmap=1
+
+=== T12b Detección con eBPF (bpftrace) de la firma del ataque, sin recompilar el kernel ===
+        ---
+        @madv_dontneed[racer, 15745]: 2607331
+        @procmem_write[racer, 15745]: 1545313
+    [OK] ebpf-detector: firma de Dirty COW detectada sin tocar el kernel: madvise(DONTNEED)=2607331 y escrituras a /proc/pid/mem=1545313 en 1 s
+
+=== T12c Por qué en el kernel: la defensa en espacio de usuario (LD_PRELOAD) se elude, la del kernel no ===
+    LD_PRELOAD + mmap() de libc        : [BLOQUEADO] libc mmap(/tmp/mmguard_protegido.txt): Permission denied
+    LD_PRELOAD + syscall directa       : [ACCEDIO] syscall directa mmap(/tmp/mmguard_protegido.txt): leyo "dato confidencial del archivo "
+    LD_PRELOAD + binario estatico      : [ACCEDIO] libc mmap(/tmp/mmguard_protegido.txt): leyo "dato confidencial del archivo "
+    mmguard (kernel) + syscall directa : [BLOQUEADO] syscall directa mmap(/dev/mmguard): Permission denied
+    mmguard (kernel) + binario estatico: [BLOQUEADO] syscall directa mmap(/dev/mmguard): Permission denied
+[PASA]  la biblioteca LD_PRELOAD solo frena el camino por libc: la syscall directa y el binario estatico la eluden
+[PASA]  el kernel (ACL de mmguard) bloquea a mmintruso incluso con syscall directa y binario estatico
+
+=== T13 Ablación: sin VM_IO (use_vm_io=0) la defensa de VM_MAYWRITE sigue resistiendo la carrera ===
+    [INFO] vault: 0 pwrite(/proc/self/mem) exitosos, 7718717 fallidos, 11940518 madvise(DONTNEED), 1940634 lecturas, 0 veces el mapa mostro contenido distinto, 0 senales
+    [OK] dirtycow-vault: escrituras exitosas=0, desviaciones del contenido=0, sesion nueva ve el original=si
+    [OK] ablacion-proc-mem: SIN VM_IO root SI leyo b'TOP-SECRET mmguard: la clave de ' (por eso VM_IO es una capa necesaria)
+    [OK] ablacion-process_vm_readv: SIN VM_IO process_vm_readv -> leyo 32 bytes: b'TOP-SECRET mmguard: la clave de '
+    [OK] vmflags: VmFlags=rd mr ms dc de dd  (io=VM_IO dc=DONTCOPY de=DONTEXPAND dd=DONTDUMP; sin wr/ex/mw/me)
+
+=== T14 Higiene del módulo: descarga limpia y dmesg sin errores del kernel ===
+[PASA]  rmmod limpio (sin referencias colgadas)
+[PASA]  dmesg sin Oops, BUG, WARNING ni bad page
+[PASA]  mensaje de descarga registrado
+[PASA]  /dev/mmguard y /proc/mmguard eliminados
+
+================================================================
+RESUMEN: 52 casos PASAN, 0 casos FALLAN
+RESULTADO FINAL: PASA
+================================================================

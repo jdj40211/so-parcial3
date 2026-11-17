@@ -1,0 +1,2 @@
+# 2026-11-17T13:39:09-05:00  kernel 6.8.0-147-generic aarch64  CPUs=4  repeticiones=7
+# CPU: Vendor ID: Apple;BIOS Vendor ID: Apple Inc.;Model name: -;BIOS Model name: CPU @ 0.0GHz;Model: 0;Thread(s) per core: 1;Core(s) per cluster: 4;BogoMIPS: 48.00;

@@ -1,0 +1,169 @@
+# Primera invocación de mmg_vm_fault (function_graph; tiempos en us; instrumentar infla las duraciones)
+|  mmg_vm_fault() {
+0.167 us   |    mmg_count();
+|    mmg_policy_lookup() {
+|      from_kuid() {
+0.084 us   |        map_id_up();
+0.250 us   |      }
+0.083 us   |      _raw_spin_lock_irqsave();
+0.042 us   |      _raw_spin_unlock_irqrestore();
+0.666 us   |    }
+|    mutex_lock() {
+0.084 us   |      dynamic_might_resched();
+0.166 us   |    }
+|    session_decrypt_locked() {
+|      alloc_pages() {
+|        alloc_pages_mpol() {
+0.083 us   |          policy_nodemask();
+|          __alloc_pages() {
+0.083 us   |            dynamic_might_resched();
+0.041 us   |            should_fail_alloc_page();
+0.125 us   |            __next_zones_zonelist();
+|            get_page_from_freelist() {
+0.042 us   |              _raw_spin_trylock();
+0.083 us   |              _raw_spin_unlock();
+2.708 us   |            }
+3.541 us   |          }
+3.875 us   |        }
+4.000 us   |      }
+|      mmg_vault_read_page() {
+|        mutex_lock() {
+0.084 us   |          dynamic_might_resched();
+0.208 us   |        }
+|        vault_check_locked() {
+|          vault_mac() {
+|            hmac_init() {
+|              crypto_shash_import() {
+0.083 us   |                sha256_ce_import();
+1.167 us   |              }
+1.333 us   |            }
+|            crypto_shash_update() {
+|              hmac_update() {
+|                crypto_shash_update() {
+0.166 us   |                  sha256_ce_update();
+0.417 us   |                }
+0.541 us   |              }
+0.792 us   |            }
+|            crypto_shash_update() {
+|              hmac_update() {
+|                crypto_shash_update() {
+|                  sha256_ce_update() {
+|                    sha256_ce_transform() {
+|                      kernel_neon_begin() {
+0.083 us   |                        fpsimd_save_user_state();
+0.083 us   |                        fpsimd_flush_cpu_state();
+0.083 us   |                        __local_bh_enable_ip();
+0.625 us   |                      }
+0.084 us   |                      kernel_neon_end();
+1.125 us   |                    }
+|                    sha256_ce_transform() {
+|                      kernel_neon_begin() {
+0.083 us   |                        fpsimd_save_user_state();
+0.084 us   |                        fpsimd_flush_cpu_state();
+0.084 us   |                        __local_bh_enable_ip();
+0.458 us   |                      }
+0.084 us   |                      kernel_neon_end();
+2.166 us   |                    }
+3.625 us   |                  }
+3.708 us   |                }
+3.875 us   |              }
+4.000 us   |            }
+|            crypto_shash_final() {
+|              hmac_final() {
+|                crypto_shash_final() {
+|                  sha256_ce_final() {
+|                    kernel_neon_begin() {
+0.042 us   |                      fpsimd_save_user_state();
+0.084 us   |                      fpsimd_flush_cpu_state();
+0.084 us   |                      __local_bh_enable_ip();
+0.500 us   |                    }
+0.042 us   |                    kernel_neon_end();
+0.958 us   |                  }
+1.084 us   |                }
+|                crypto_shash_import() {
+0.083 us   |                  sha256_ce_import();
+0.167 us   |                }
+|                crypto_shash_finup() {
+|                  sha256_ce_finup() {
+|                    kernel_neon_begin() {
+0.042 us   |                      fpsimd_save_user_state();
+0.042 us   |                      fpsimd_flush_cpu_state();
+0.084 us   |                      __local_bh_enable_ip();
+0.416 us   |                    }
+0.083 us   |                    kernel_neon_end();
+0.875 us   |                  }
+1.042 us   |                }
+2.583 us   |              }
+3.000 us   |            }
+10.000 us  |          }
+0.041 us   |          __crypto_memneq();
++ 10.250 us  |        }
+|        vault_crypt() {
+0.084 us   |          __init_swait_queue_head();
+|          __kmalloc() {
+0.084 us   |            dynamic_might_resched();
+0.084 us   |            should_failslab.constprop.0();
+0.750 us   |          }
+|          crypto_skcipher_encrypt() {
+|            ctr_encrypt() {
+|              skcipher_walk_virt() {
+0.042 us   |                dynamic_might_resched();
+|                skcipher_walk_skcipher() {
+|                  skcipher_walk_first() {
+0.125 us   |                    skcipher_walk_next();
+0.292 us   |                  }
+0.458 us   |                }
+0.708 us   |              }
+|              kernel_neon_begin() {
+0.083 us   |                fpsimd_save_user_state();
+0.083 us   |                fpsimd_flush_cpu_state();
+0.083 us   |                __local_bh_enable_ip();
+0.459 us   |              }
+0.083 us   |              kernel_neon_end();
+|              skcipher_walk_done() {
+|                flush_dcache_page() {
+0.041 us   |                  flush_dcache_folio();
+0.209 us   |                }
+0.458 us   |              }
+2.792 us   |            }
+3.416 us   |          }
+|          kfree_sensitive() {
+0.083 us   |            kfence_ksize();
+|            __ksize() {
+0.084 us   |              skip_orig_size_check();
+0.291 us   |            }
+0.083 us   |            kfree();
+0.750 us   |          }
+6.333 us   |        }
+0.083 us   |        mutex_unlock();
++ 17.292 us  |      }
+|      mmg_digest() {
+|        crypto_shash_digest() {
+|          sha256_ce_digest() {
+|            sha256_ce_finup() {
+|              sha256_ce_transform() {
+|                kernel_neon_begin() {
+0.041 us   |                  fpsimd_save_user_state();
+0.041 us   |                  fpsimd_flush_cpu_state();
+0.041 us   |                  __local_bh_enable_ip();
+0.459 us   |                }
+0.042 us   |                kernel_neon_end();
+2.125 us   |              }
+2.291 us   |            }
+2.417 us   |          }
+2.666 us   |        }
+2.834 us   |      }
++ 24.541 us  |    }
+0.041 us   |    mmg_count();
+0.083 us   |    mutex_unlock();
+|    mmg_log() {
+|      from_kuid() {
+0.083 us   |        map_id_up();
+0.208 us   |      }
+0.042 us   |      _raw_spin_lock_irqsave();
+0.083 us   |      jiffies_to_msecs();
+0.083 us   |      _raw_spin_unlock_irqrestore();
+0.084 us   |      _raw_spin_trylock();
+0.084 us   |      _raw_spin_unlock_irqrestore();
+1.791 us   |    }
++ 37.375 us  |  }

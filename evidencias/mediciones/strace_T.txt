@@ -1,0 +1,20 @@
+### strace -T bench mmap file /tmp/mm_bench.8Z4FFM
+file /tmp/mm_bench.8Z4FFM: 2000 llamadas mmap(64 KiB), mediana=22.0 us, media=22.8 us, p95=26.0 us (incluye el sobrecosto de ptrace, igual para ambos)
+### strace -T bench mmap dev
+dev: 2000 llamadas mmap(64 KiB), mediana=24.0 us, media=24.0 us, p95=29.0 us (incluye el sobrecosto de ptrace, igual para ambos)
+
+### strace -c bench warm dev 2000
+% time     seconds  usecs/call     calls    errors syscall
+------ ----------- ----------- --------- --------- ----------------
+ 99.54    0.010036           5      2000           madvise
+  0.15    0.000015           5         3           brk
+  0.08    0.000008           2         3           fstat
+  0.07    0.000007           7         1           write
+  0.06    0.000006           6         1         1 ioctl
+  0.05    0.000005           2         2           getrusage
+  0.05    0.000005           5         1           getrandom
+  0.00    0.000000           0         1         1 faccessat
+  0.00    0.000000           0         3           openat
+  0.00    0.000000           0         2           close
+  0.00    0.000000           0         1           read
+  0.00    0.000000           0         1           set_tid_address
