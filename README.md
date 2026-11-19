@@ -20,8 +20,8 @@ los procesos autorizados leen (y, si tienen permiso, escriben) con `mmap()`, con
 | Auditoría | `dmesg` (PID, UID, comando) + anillo y contadores en `/proc/mmguard` + `kprobe` opcional sobre `security_mmap_file` |
 
 Probado en **Ubuntu 24.04 aarch64, kernel `6.8.0-147-generic`** (VM Lima `sokernel`). El código usa solo API de 6.x
-(`vm_flags_set/clear`, `vm_fault_t`, `proc_create_single`, `crypto_skcipher`); se evitó todo lo que cambió o desapareció entre 5.x y 6.x
-(ver `tools/alucinaciones/`). Para compilarlo en 5.x habría que adaptar `vm_flags_set/clear` (en 5.x se asigna `vma->vm_flags` directamente).
+(`vm_flags_set/clear`, `vm_fault_t`, `proc_create_single`, `crypto_skcipher`); se evitó todo lo que cambió o desapareció entre 5.x y 6.x.
+Para compilarlo en 5.x habría que adaptar `vm_flags_set/clear` (en 5.x se asigna `vma->vm_flags` directamente).
 
 ## Arquitectura
 
@@ -63,12 +63,11 @@ user/                       client (cliente autorizado), attacker (ataques), rac
 tests/run_tests.sh          TODAS las pruebas, termina con PASA/FALLA
 tests/kcore_check.py        demuestra que el contenido en la memoria del kernel está cifrado (/proc/kcore)
 tests/remote_read_check.py  root no puede leer el texto en claro desde fuera (/proc/pid/mem, process_vm_readv)
-tests/detector_ebpf.sh      bpftrace detecta la firma de Dirty COW sin recompilar el kernel (pregunta 7)
+tests/detector_ebpf.sh      bpftrace detecta la firma de Dirty COW sin recompilar el kernel
 tools/medir.sh              mediciones de la sección 4.2 (perf, strace, bpftrace, ftrace)
-tools/alucinaciones/        candidatos "alucinados" + verificador que compila contra los headers 6.8
 tools/build_informe.py      genera docs/INFORME.md con las cifras REALES de evidencias/ (plantilla en tools/informe_plantilla/)
 tools/sync_vm.sh, vm.sh     flujo Mac -> VM Lima
-evidencias/                 salidas reales: run_tests.log, dmesg, /proc/mmguard, mediciones/, alucinaciones.txt
+evidencias/                 salidas reales: run_tests.log, dmesg, /proc/mmguard, mediciones/
 docs/INFORME.md             el informe (Partes I, II y III)   |   docs/ENUNCIADO.txt   el enunciado
 ```
 
@@ -81,7 +80,6 @@ Requisitos: Linux 6.x con headers (`linux-headers-$(uname -r)`), `gcc`, `make`, 
 make                    # módulo + programas de usuario; compila con W=1 sin una sola advertencia
 sudo ./tests/run_tests.sh   # carga el módulo, crea usuarios de prueba, corre todo (~1 min), descarga. Debe terminar en "RESULTADO FINAL: PASA"
 sudo ./tools/medir.sh       # mediciones (deja las salidas crudas en evidencias/mediciones/)
-make halu                   # compila los candidatos "alucinados" y guarda los errores reales
 
 # uso manual
 sudo insmod kernel/mmguard.ko                 # parámetros: verify_on_fault=1 use_vm_io=1 allow_debug=0 watch_path=""
@@ -103,10 +101,6 @@ que usan las pruebas; **apagado por defecto**), `watch_path` (prefijo de ruta qu
 
 | Enunciado | Dónde |
 |---|---|
-| Parte I, 10 preguntas (30 %) | `docs/INFORME.md`, Parte I |
-| 3.1 flujo de trabajo con IA | `docs/INFORME.md` 3.1 |
-| 3.2 prompts + alucinaciones + validación | `docs/INFORME.md` 3.2, `tools/alucinaciones/`, `evidencias/alucinaciones.txt` |
-| 3.3 arquitectura y trade-offs | `docs/INFORME.md` 3.3 y el diagrama de arriba |
 | 4.1 código modular, Makefile sin advertencias | `kernel/`, `user/`, `Makefile` |
 | 4.1 demostración de validación de permisos, cifrado/descifrado | `tests/run_tests.sh` (T01 a T04, T08), `evidencias/run_tests.log` |
 | 4.1 scripts Bash/Python de ataques y carreras | `tests/run_tests.sh`, `tests/*.py`, `user/attacker.c`, `user/racer.c`, `user/stress.c` |
@@ -115,7 +109,7 @@ que usan las pruebas; **apagado por defecto**), `watch_path` (prefijo de ruta qu
 ## Qué NO hace (honestidad)
 
 * No cifra archivos de un sistema de archivos arbitrario: protege una **bóveda propia** expuesta como dispositivo. Interceptar `mmap` de
-  cualquier archivo exigiría un LSM o integrarse al sistema de archivos (ver informe, preguntas 4 y 5). El `kprobe` solo **audita**.
+  cualquier archivo exigiría un LSM o integrarse al sistema de archivos. El `kprobe` solo **audita**.
 * Los datos en claro están en RAM mientras un proceso autorizado los tiene mapeados: un atacante con lectura física de memoria o
   con control del kernel (otro módulo, `/dev/mem`, `/proc/kcore` con las páginas de sesión) los vería. Mitigaciones de hardware en el informe.
 * Un proceso **autorizado** comprometido puede filtrar lo que lee: el módulo controla quién puede mapear, no qué hace luego con el dato.

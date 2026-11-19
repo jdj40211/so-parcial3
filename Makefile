@@ -3,7 +3,7 @@
 #   make load       carga el módulo (sudo)        make unload   lo descarga
 #   make test       corre todas las pruebas (sudo, carga/descarga el módulo solo)
 #   make bench      corre las mediciones de la sección 4.2 (sudo)
-#   make halu       compila los "candidatos alucinados" y registra los errores reales
+#   make       compila los "candidatos alucinados" y registra los errores reales
 #   make clean
 KDIR ?= /lib/modules/$(shell uname -r)/build
 
@@ -27,11 +27,8 @@ test: all
 bench: all
 	sudo ./tools/medir.sh
 
-halu:
-	./tools/alucinaciones/verificar.sh | tee evidencias/alucinaciones.txt
-
 clean:
 	$(MAKE) -C kernel clean KDIR=$(KDIR)
 	$(MAKE) -C user clean
 
-.PHONY: all modules user load unload test bench halu clean
+.PHONY: all modules user load unload test bench clean

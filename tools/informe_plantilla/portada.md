@@ -19,6 +19,6 @@
 * **Costo medido.** `mmap`+`munmap` ≈ {{M_MMAP_DEV}} ns (archivo normal {{M_MMAP_FILE}} ns); fallo "caliente" ≈ {{M_WARM_DEV_PF}} ns por página ({{M_WARM_NOV_PF}} ns sin la verificación SHA-256); descifrado "frío" ≈ {{M_COLD_DEV_PF}} ns por página, una vez por página y por sesión. Después del fallo, el acceso es memoria normal.
 * **Límites.** Probado solo en aarch64 / 6.8.0-147; el texto en claro está en RAM mientras se usa; el `kprobe` solo audita; un administrador es de confianza. Ver "Limitaciones y trabajo futuro".
 
-**Contenido:** Parte I (10 preguntas) · Parte II (estrategia con IA: 3.1, 3.2, 3.3) · Parte III (implementación, resultados, mediciones, argumentación, limitaciones).
+**Contenido:** solo la Parte III del enunciado (implementación, resultados de las pruebas, mediciones, argumentación y limitaciones). Las Partes I y II (preguntas diagnósticas y estrategia con IA) se entregan en el documento de Andrés Prieto.
 
 ---

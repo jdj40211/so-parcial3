@@ -28,7 +28,7 @@
 6. **Integridad.** Dos controles independientes: el **MAC** de la bóveda (detecta que el texto cifrado en memoria del kernel cambió) y un **SHA-256 de cada página en claro** que se verifica en cada fallo (detecta que alguien escribió sobre el marco físico sin pasar por `page_mkwrite`, el efecto de un Dirty COW). Ante la segunda, la página se **repara** volviendo a descifrar desde la bóveda.
 7. **Auditoría.** Cada `open`, `mmap`, fallo, rechazo, escritura, sellado, evento de integridad y acción de administración queda en `dmesg` con `pid`, `tgid`, `uid` y `comm`, en un anillo de 128 eventos y en contadores atómicos (`/proc/mmguard` y `ioctl(STATS)`). Las líneas de `dmesg` de fallos, escrituras y sellados usan `ratelimit` (una carrera genera cientos de miles de fallos por segundo); el anillo y los contadores no pierden ninguno.
 8. **Orden de bloqueos y reglas de seguridad del código.** `s->lock` (sesión) → `V.lock` (bóveda); nunca se hace `copy_{from,to}_user` con un bloqueo tomado (`memdup_user` antes); el manejador de fallos no toma ningún bloqueo de tabla de páginas; toda página reservada con `__GFP_ZERO` o sobrescrita entera (sin fugas de memoria del kernel al usuario); y el texto en claro se borra al liberar.
-9. **`kprobe` sobre `security_mmap_file`** (con `watch_path=...`): solo observa y registra los mapeos de archivos bajo esa ruta. No modifica registros ni el valor de retorno y **no toca la tabla de llamadas al sistema** (ver pregunta 4).
+9. **`kprobe` sobre `security_mmap_file`** (con `watch_path=...`): solo observa y registra los mapeos de archivos bajo esa ruta. No modifica registros ni el valor de retorno y **no toca la tabla de llamadas al sistema**.
 
 **Compilación.** `make` en la raíz compila el módulo con `W=1` y `-Wall -Wextra` usando el compilador exacto del kernel de la distribución (`aarch64-linux-gnu-gcc-13`): **cero advertencias** (solo queda la línea informativa `Skipping BTF generation ... unavailability of vmlinux`, que no es advertencia del compilador: la VM no trae `vmlinux`). Los programas de usuario compilan con `-Wall -Wextra` sin advertencias.
 
@@ -79,7 +79,7 @@
 | T10 | Se revoca el UID con el mapa vivo | La ACL se vuelve a validar en cada fallo (`SIGBUS`) | PASA |
 | T11 | `kprobe` sobre `security_mmap_file` | Auditoría de mapeos de archivos vigilados | PASA |
 | T12 | `dmesg` y `/proc/mmguard` | Todos los eventos con `pid`, `uid`, `comm` | PASA |
-| T12b | `bpftrace` detecta la firma del ataque | Pregunta 7 (eBPF, sin recompilar) | PASA |
+| T12b | `bpftrace` detecta la firma del ataque | Auditoría con eBPF sin recompilar el kernel | PASA |
 | T12c | `LD_PRELOAD` frente al kernel | La defensa en usuario se elude; la del kernel no | PASA |
 | T13 | Ablación sin `VM_IO` | `VM_MAYWRITE` por sí solo resiste la carrera; `VM_IO` evita la lectura desde fuera | PASA |
 | T14 | `rmmod` y revisión de `dmesg` | Descarga limpia; sin Oops, BUG, WARNING ni bad page | PASA |

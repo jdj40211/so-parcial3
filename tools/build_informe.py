@@ -124,7 +124,7 @@ V["L_USER"] = str(sum(nlines(f) for f in glob.glob(os.path.join(ROOT, "user", "*
 V["L_TESTS"] = str(sum(nlines(f) for f in glob.glob(os.path.join(ROOT, "tests", "*")) if os.path.isfile(f)))
 
 portada = rd(os.path.join(TPL, "portada.md"))
-cuerpo = portada + "\n" + rd(os.path.join(TPL, "parte1_2.md")) + "\n" + rd(os.path.join(TPL, "parte3.md"))
+cuerpo = portada + "\n" + rd(os.path.join(TPL, "parte3.md"))
 faltan = set(re.findall(r"\{\{(\w+)\}\}", cuerpo)) - set(V)
 if faltan:
     raise SystemExit("placeholders sin valor: %s" % sorted(faltan))
