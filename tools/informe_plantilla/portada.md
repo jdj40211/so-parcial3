@@ -1,11 +1,11 @@
 # Parcial 3 de Sistemas Operativos: seguridad de archivos mapeados con `mmap()` desde la capa de kernel
 
-**Universidad EAFIT** · Escuela de Ciencias Aplicadas e Ingeniería · Departamento de Informática y Analítica
-**Asignatura:** Sistemas Operativos, periodo 2026-2
-**Evaluación:** Parcial práctico-teórico (valor 25 %)
-**Integrantes:** Juan David Sierra (GitHub `jdj40211`) y Andrés Prieto
-**Fecha:** 17 de noviembre de 2026
-**Código:** repositorio `so-parcial3` (módulo de kernel `mmguard`, programas de usuario, pruebas, mediciones y evidencias)
+**Universidad EAFIT** · Escuela de Ciencias Aplicadas e Ingeniería · Departamento de Informática y Analítica  
+**Asignatura:** Sistemas Operativos, periodo 2026-2  
+**Evaluación:** Parcial práctico-teórico (valor 25 %)  
+**Integrantes:** Juan David Sierra (GitHub `jdj40211`) y Andrés Prieto  
+**Fecha:** 17 de noviembre de 2026  
+**Código:** https://github.com/jdj40211/so-parcial3 (módulo de kernel `mmguard`, programas de usuario, pruebas, mediciones y evidencias)  
 **Entorno de pruebas:** VM Lima `sokernel`, Ubuntu 24.04 aarch64, kernel `6.8.0-147-generic`
 
 > Nota de método. Todas las cifras de este informe salen de archivos de `evidencias/` generados por las pruebas y mediciones reales en la VM

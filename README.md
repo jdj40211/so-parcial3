@@ -1,5 +1,7 @@
 # mmguard: bóveda cifrada con `mmap()` protegido desde el kernel
 
+Repositorio: https://github.com/jdj40211/so-parcial3 · Integrantes: Juan David Sierra y Andrés Prieto (EAFIT, Sistemas Operativos 2026-2)
+
 Parcial 3 de Sistemas Operativos (EAFIT, 2026-2): *Seguridad de archivos mediante intervención en la capa del kernel y mapeo de memoria (`mmap`)*.
 Integrantes: Juan David Sierra (GitHub `jdj40211`) y Andrés Prieto.
 
